@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package awakari.embed.text;
+
+option go_package = "api/grpc";
+
+service Service {
+  rpc EmbedTexts(EmbedTextsRequest) returns (EmbedTextsResponse);
+}
+
+message EmbedTextsRequest {
+  repeated string texts = 1;
+}
+
+message EmbedTextsResponse {
+  repeated Embedding embeddings = 1;
+}
+
+message Embedding {
+  repeated float features = 1;
+}
