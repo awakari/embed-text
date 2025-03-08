@@ -13,9 +13,10 @@ RUN \
       protobuf-devel && \
     make build
 
-FROM ghcr.io/knights-analytics/hugot:v0.3.3 AS runtime
+FROM debian:bookworm-slim
 COPY --from=builder /go/src/embed-text/embed-text /bin/embed-text
 COPY --from=builder /model.onnx /model/model.onnx
 COPY --from=builder /tokenizer.json /model/tokenizer.json
+COPY --from=builder /usr/lib64/onnxruntime.so /usr/lib/onnxruntime.so
 
 ENTRYPOINT ["/bin/embed-text"]

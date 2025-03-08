@@ -12,9 +12,9 @@ type Config struct {
 		Level int `envconfig:"LOG_LEVEL" default:"-4" required:"true"`
 	}
 	Model struct {
-		Path     string `envconfig:"MODEL_PATH" default:"/model"`
+		Path     string `envconfig:"MODEL_PATH" default:"/model" required:"true"`
 		Name     string `envconfig:"MODEL_NAME" default:"sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2"`
-		FileName string `envconfig:"MODEL_FILE_NAME" default:"model.onnx"`
+		FileName string `envconfig:"MODEL_FILE_NAME" default:"model.onnx" required:"true"`
 	}
 }
 

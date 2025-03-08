@@ -52,11 +52,11 @@ spec:
           livenessProbe:
             grpc:
               port: {{ .Values.service.port }}
-            timeoutSeconds: 10
+            timeoutSeconds: 100
           readinessProbe:
             grpc:
               port: {{ .Values.service.port }}
-            timeoutSeconds: 10
+            timeoutSeconds: 100
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

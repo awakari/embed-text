@@ -23,7 +23,7 @@ test: vet
 	rm -f ${COVERAGE_TMP_FILE_NAME}
 
 build: proto
-	GOOS=linux GOARCH= GOARM= go build -ldflags="-s -w" -o ${BINARY_FILE_NAME} main.go
+	CGO_ENABLED=1 GOOS=linux GOARCH= GOARM= go build -ldflags="-s -w" -o ${BINARY_FILE_NAME} main.go
 	chmod ugo+x ${BINARY_FILE_NAME}
 
 docker:

@@ -6,6 +6,7 @@ import (
 	"github.com/awakari/embed-text/config"
 	"github.com/awakari/embed-text/service"
 	"github.com/knights-analytics/hugot"
+	"github.com/knights-analytics/hugot/options"
 	"log/slog"
 	"os"
 )
@@ -22,7 +23,7 @@ func main() {
 	}
 	log := slog.New(slog.NewTextHandler(os.Stdout, &opts))
 
-	session, err := hugot.NewORTSession()
+	session, err := hugot.NewORTSession(options.WithExecutionMode(true))
 	if err != nil {
 		panic(err)
 	}
