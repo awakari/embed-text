@@ -78,6 +78,6 @@ log:
   level: -4
 model:
   path: "/model"
-  name: "sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2"
+  name: "intfloat/multilingual-e5-small"
   file:
     name: "model.onnx"

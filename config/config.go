@@ -13,7 +13,7 @@ type Config struct {
 	}
 	Model struct {
 		Path     string `envconfig:"MODEL_PATH" default:"/model" required:"true"`
-		Name     string `envconfig:"MODEL_NAME" default:"sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2"`
+		Name     string `envconfig:"MODEL_NAME" default:"intfloat/multilingual-e5-small"`
 		FileName string `envconfig:"MODEL_FILE_NAME" default:"model.onnx" required:"true"`
 	}
 }

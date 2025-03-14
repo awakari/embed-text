@@ -1,7 +1,7 @@
 FROM ghcr.io/knights-analytics/hugot:v0.3.3 AS builder
-ARG MODEL_TYPE=sentence-transformers
-ARG MODEL_NAME=paraphrase-multilingual-MiniLM-L12-v2
-ARG MODEL_FILE_ONNX=model_O3.onnx
+ARG MODEL_TYPE=intfloat
+ARG MODEL_NAME=multilingual-e5-small
+ARG MODEL_FILE_ONNX=model_O4.onnx
 ARG TOKENIZER_FILE=tokenizer.json
 WORKDIR /go/src/embed-text
 COPY . .
