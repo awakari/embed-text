@@ -23,7 +23,14 @@ func main() {
 	}
 	log := slog.New(slog.NewTextHandler(os.Stdout, &opts))
 
-	session, err := hugot.NewORTSession(options.WithExecutionMode(true))
+	session, err := hugot.NewORTSession(
+		options.WithExecutionMode(true),
+		// options to optimize for throughput over latency below:
+		options.WithInterOpNumThreads(1),
+		options.WithIntraOpNumThreads(1),
+		options.WithCpuMemArena(false),
+		options.WithMemPattern(false),
+	)
 	if err != nil {
 		panic(err)
 	}
@@ -34,13 +41,12 @@ func main() {
 		Name:         cfg.Model.Name,
 		OnnxFilename: cfg.Model.FileName,
 	}
-
-	pipeline, err := hugot.NewPipeline(session, feCfg)
+	fePipeline, err := hugot.NewPipeline(session, feCfg)
 	if err != nil {
 		panic(err)
 	}
 
-	svc := service.New(pipeline)
+	svc := service.New(fePipeline, cfg.Model.Chunk)
 	svc = service.NewLogging(svc, log)
 
 	log.Info(fmt.Sprintf("starting to listen the API @ port #%d...", cfg.Api.Port))

@@ -19,9 +19,9 @@ func NewLogging(svc Service, log *slog.Logger) Service {
 	}
 }
 
-func (l logging) EmbedTexts(ctx context.Context, texts []string) (embeddings [][]float32, err error) {
-	embeddings, err = l.svc.EmbedTexts(ctx, texts)
+func (l logging) EmbedText(ctx context.Context, prefix, text string) (embeddings [][]float32, err error) {
+	embeddings, err = l.svc.EmbedText(ctx, prefix, text)
 	ll := util.LogLevel(err)
-	l.log.Log(ctx, ll, fmt.Sprintf("EmbedTexts(%d): %s", len(texts), err))
+	l.log.Log(ctx, ll, fmt.Sprintf("EmbedText(prefix=%s, bytes=%d): %d, %s", prefix, len(text), len(embeddings), err))
 	return
 }

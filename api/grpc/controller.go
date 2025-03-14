@@ -17,10 +17,10 @@ func NewController(svc service.Service) ServiceServer {
 	}
 }
 
-func (c controller) EmbedTexts(ctx context.Context, req *EmbedTextsRequest) (resp *EmbedTextsResponse, err error) {
-	resp = &EmbedTextsResponse{}
+func (c controller) EmbedText(ctx context.Context, req *EmbedTextRequest) (resp *EmbedTextResponse, err error) {
+	resp = &EmbedTextResponse{}
 	var embeddings [][]float32
-	embeddings, err = c.svc.EmbedTexts(ctx, req.Texts)
+	embeddings, err = c.svc.EmbedText(ctx, req.Prefix, req.Text)
 	switch {
 	case err == nil:
 		for _, embedding := range embeddings {

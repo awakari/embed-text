@@ -15,7 +15,13 @@ type Config struct {
 		Path     string `envconfig:"MODEL_PATH" default:"/model" required:"true"`
 		Name     string `envconfig:"MODEL_NAME" default:"intfloat/multilingual-e5-small"`
 		FileName string `envconfig:"MODEL_FILE_NAME" default:"model.onnx" required:"true"`
+		Chunk    ChunkConfig
 	}
+}
+
+type ChunkConfig struct {
+	Size    uint32 `envconfig:"MODEL_CHUNK_SIZE" default:"1024" required:"true"`
+	Overlap uint32 `envconfig:"MODEL_CHUNK_OVERLAP" default:"128" required:"true"`
 }
 
 func NewConfigFromEnv() (cfg Config, err error) {

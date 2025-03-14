@@ -79,5 +79,8 @@ log:
 model:
   path: "/model"
   name: "intfloat/multilingual-e5-small"
+  chunk:
+    size: 1024
+    overlap: 128
   file:
     name: "model.onnx"
