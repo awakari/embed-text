@@ -3,7 +3,6 @@ package service
 import (
 	"context"
 	"github.com/awakari/embed-text/config"
-	"github.com/awakari/embed-text/util"
 	"github.com/knights-analytics/hugot/pipelines"
 )
 
@@ -24,13 +23,23 @@ func New(pipeline *pipelines.FeatureExtractionPipeline, cfgChunk config.ChunkCon
 }
 
 func (s svc) EmbedText(ctx context.Context, prefix, text string) (embeddings [][]float32, err error) {
-	chunks := util.TextSplitWithOverlaps(text, int(s.cfgChunk.Size), int(s.cfgChunk.Overlap))
-	var prefixedChunks []string
-	for _, chunk := range chunks {
-		prefixedChunks = append(prefixedChunks, prefix+chunk)
+	snippet := prefix + text
+	if len(text) > int(s.cfgChunk.Size) {
+		snippet = snippet[:s.cfgChunk.Size]
 	}
 	var out *pipelines.FeatureExtractionOutput
-	out, err = s.pipeline.RunPipeline(prefixedChunks)
+	for {
+		out, err = s.pipeline.RunPipeline([]string{
+			snippet,
+		})
+		if err == nil {
+			break
+		}
+		if len(snippet) < int(s.cfgChunk.Overlap) {
+			break
+		}
+		snippet = snippet[:len(snippet)-int(s.cfgChunk.Overlap)]
+	}
 	if err == nil {
 		embeddings = out.Embeddings
 	}

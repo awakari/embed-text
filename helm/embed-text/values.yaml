@@ -53,11 +53,10 @@ ingress:
 
 resources:
   requests:
-    cpu: 10m
-    memory: 1Gi
-  limits:
-    cpu: 1000m
+    cpu: 1
     memory: 2Gi
+  limits:
+    memory: 5Gi
 
 autoscaling:
   enabled: true
@@ -81,6 +80,6 @@ model:
   name: "intfloat/multilingual-e5-small"
   chunk:
     size: 1024
-    overlap: 128
+    overlap: 256
   file:
     name: "model.onnx"
