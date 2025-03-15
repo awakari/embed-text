@@ -26,8 +26,6 @@ func main() {
 	session, err := hugot.NewORTSession(
 		options.WithExecutionMode(true),
 		// options to optimize for throughput over latency below:
-		options.WithInterOpNumThreads(1),
-		options.WithIntraOpNumThreads(1),
 		options.WithCpuMemArena(false),
 		options.WithMemPattern(false),
 	)
