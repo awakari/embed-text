@@ -12,10 +12,14 @@ type Config struct {
 		Level int `envconfig:"LOG_LEVEL" default:"-4" required:"true"`
 	}
 	Model struct {
-		Path     string `envconfig:"MODEL_PATH" default:"/model" required:"true"`
-		Name     string `envconfig:"MODEL_NAME" default:"intfloat/multilingual-e5-small"`
-		FileName string `envconfig:"MODEL_FILE_NAME" default:"model.onnx" required:"true"`
-		Chunk    ChunkConfig
+		Path           string `envconfig:"MODEL_PATH" default:"/model" required:"true"`
+		Name           string `envconfig:"MODEL_NAME" default:"intfloat/multilingual-e5-small"`
+		FileName       string `envconfig:"MODEL_FILE_NAME" default:"model.onnx" required:"true"`
+		Chunk          ChunkConfig
+		IntraOpThreads struct {
+			Enabled bool `envconfig:"MODEL_INTRA_OP_THREADS_ENABLED" default:"true" required:"true"`
+			Num     int  `envconfig:"MODEL_INTRA_OP_THREADS_NUM" default:"1" required:"true"`
+		}
 	}
 }
 

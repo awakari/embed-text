@@ -81,3 +81,6 @@ model:
     overlap: 256
   file:
     name: "model.onnx"
+  intraOpThreads:
+    enabled: true
+    num: 1

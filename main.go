@@ -23,12 +23,16 @@ func main() {
 	}
 	log := slog.New(slog.NewTextHandler(os.Stdout, &opts))
 
-	session, err := hugot.NewORTSession(
+	modelOpts := []options.WithOption{
 		options.WithExecutionMode(true),
 		// options to optimize for throughput over latency below:
 		options.WithCpuMemArena(false),
 		options.WithMemPattern(false),
-	)
+	}
+	if cfg.Model.IntraOpThreads.Enabled {
+		modelOpts = append(modelOpts, options.WithIntraOpNumThreads(cfg.Model.IntraOpThreads.Num))
+	}
+	session, err := hugot.NewORTSession(modelOpts...)
 	if err != nil {
 		panic(err)
 	}

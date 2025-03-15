@@ -45,6 +45,10 @@ spec:
               value: "{{ .Values.model.chunk.size }}"
             - name: MODEL_CHUNK_OVERLAP
               value: "{{ .Values.model.chunk.overlap }}"
+            - name: MODEL_INTRA_OP_THREADS_ENABLED
+              value: "{{ .Values.model.intraOpThreads.enabled }}"
+            - name: MODEL_INTRA_OP_THREADS_NUM
+              value: "{{ .Values.model.intraOpThreads.num }}"
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
