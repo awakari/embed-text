@@ -30,6 +30,7 @@ func main() {
 		options.WithMemPattern(false),
 	}
 	if cfg.Model.IntraOpThreads.Enabled {
+		log.Info("Setting the model intra op threads number to %d", cfg.Model.IntraOpThreads.Num)
 		modelOpts = append(modelOpts, options.WithIntraOpNumThreads(cfg.Model.IntraOpThreads.Num))
 	}
 	session, err := hugot.NewORTSession(modelOpts...)
