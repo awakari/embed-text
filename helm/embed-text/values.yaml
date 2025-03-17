@@ -78,7 +78,7 @@ model:
   name: "intfloat/multilingual-e5-small"
   chunk:
     size: 1024
-    overlap: 256
+    overlap: 192
   file:
     name: "model.onnx"
   intraOpThreads:

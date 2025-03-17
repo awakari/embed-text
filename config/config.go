@@ -25,7 +25,7 @@ type Config struct {
 
 type ChunkConfig struct {
 	Size    uint32 `envconfig:"MODEL_CHUNK_SIZE" default:"1024" required:"true"`
-	Overlap uint32 `envconfig:"MODEL_CHUNK_OVERLAP" default:"256" required:"true"`
+	Overlap uint32 `envconfig:"MODEL_CHUNK_OVERLAP" default:"192" required:"true"`
 }
 
 func NewConfigFromEnv() (cfg Config, err error) {

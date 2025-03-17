@@ -18,11 +18,11 @@ func TestTextSplitWithOverlaps(t *testing.T) {
 			},
 		},
 		"exact": {
-			in:          "hello world",
-			chunkSize:   11,
-			overlapSize: 2,
+			in:          "hello world!",
+			chunkSize:   12,
+			overlapSize: 1,
 			out: []string{
-				"hello world",
+				"hello world!",
 			},
 		},
 		"no split": {

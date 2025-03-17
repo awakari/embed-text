@@ -19,7 +19,9 @@ func TextSplitWithOverlaps(in string, chunkSize, overlapSize int) []string {
 
 		// Extract chunk
 		chunk := in[i:end]
-		chunks = append(chunks, chunk)
+		if i == 0 || len(chunk) > overlapSize {
+			chunks = append(chunks, chunk)
+		}
 
 		// Move index forward, keeping the overlap
 		i += chunkSize - overlapSize
