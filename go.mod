@@ -4,10 +4,10 @@ go 1.24
 
 require (
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/knights-analytics/hugot v0.3.4
+	github.com/knights-analytics/hugot v0.3.5
 	github.com/stretchr/testify v1.10.0
-	google.golang.org/grpc v1.71.0
-	google.golang.org/protobuf v1.36.5
+	google.golang.org/grpc v1.71.1
+	google.golang.org/protobuf v1.36.6
 )
 
 require (
@@ -29,13 +29,13 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/viant/afs v1.25.1 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
-	github.com/yalue/onnxruntime_go v1.17.0 // indirect
+	github.com/yalue/onnxruntime_go v1.19.0 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
-	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250313205543-e70fdf4c4cb4 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250404141209-ee84b53bf3d0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect
 )

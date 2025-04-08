@@ -1,4 +1,4 @@
-FROM ghcr.io/knights-analytics/hugot:v0.3.3 AS builder
+FROM ghcr.io/knights-analytics/hugot:v0.3.5 AS builder
 ARG MODEL_TYPE=intfloat
 ARG MODEL_NAME=multilingual-e5-small
 ARG MODEL_FILE_ONNX=model_O4.onnx
