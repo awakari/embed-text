@@ -91,6 +91,7 @@ spec:
                     operator: In
                     values:
                       - {{ include "embed-text.name" . }}
+                      - mongodb
               topologyKey: "kubernetes.io/hostname"
       {{- with .Values.tolerations }}
       tolerations:
