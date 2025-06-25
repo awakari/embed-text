@@ -82,6 +82,7 @@ spec:
                     operator: In
                     values:
                       - {{ include "embed-text.name" . }}
+                      - scylla
               topologyKey: "kubernetes.io/hostname"
       {{- with .Values.tolerations }}
       tolerations:
