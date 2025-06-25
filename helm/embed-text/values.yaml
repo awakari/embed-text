@@ -82,5 +82,5 @@ model:
   file:
     name: "model.onnx"
   intraOpThreads:
-    enabled: true
+    enabled: false
     num: 1
