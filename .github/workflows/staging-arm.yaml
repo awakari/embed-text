@@ -31,7 +31,12 @@ jobs:
           platforms: arm64
 
       - name: Staging
-        run: docker run --platform=linux/arm64 --rm arm64v8/ubuntu make staging-arm
+        run: docker run \
+          -v ${{ github.workspace }}:/workspace \
+          -w /workspace \
+          --platform=linux/arm64 \
+          --rm arm64v8/ubuntu \
+          make staging-arm
 
       - name: Set up Helm
         uses: azure/setup-helm@v1
