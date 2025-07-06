@@ -62,3 +62,4 @@
 #        run: |
 #          helm upgrade --install ${COMPONENT} ${COMPONENT}-0.0.0.tgz \
 #            --set-string podAnnotations.commit=$(git rev-parse --short HEAD)
+#
