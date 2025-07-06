@@ -36,18 +36,10 @@ docker:
 docker-arm:
 	docker build -t awakari/embed-text-arm64 . -f arm.Dockerfile
 
-run: docker
-	docker run \
-		-d \
-		--name awakari-embed-text \
-		-p 50051:50051 \
-		--expose 50051 \
-		awakari/embed-text
-
 staging: docker
 	./scripts/staging.sh
 
-staging-arm: docker
+staging-arm: docker-arm
 	./scripts/staging-arm.sh
 
 release: docker
