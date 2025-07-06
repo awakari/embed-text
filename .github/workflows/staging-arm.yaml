@@ -32,11 +32,9 @@ jobs:
 
       - name: Staging
         run: docker run \
-          -v ${{ github.workspace }}:/workspace \
-          -w /workspace \
           --platform=linux/arm64 \
           --rm arm64v8/ubuntu \
-          make staging-arm
+          bash -c "apt-get update && apt-get install -y make && make staging-arm"
 
       - name: Set up Helm
         uses: azure/setup-helm@v1
