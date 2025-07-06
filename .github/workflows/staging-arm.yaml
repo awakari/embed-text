@@ -31,10 +31,7 @@ jobs:
           platforms: arm64
 
       - name: Staging
-        run: docker run \
-          --platform=linux/arm64 \
-          --rm arm64v8/buildpack-deps \
-          make staging-arm
+        run: docker run --platform=linux/arm64 --rm arm64v8/buildpack-deps make staging-arm
 
       - name: Set up Helm
         uses: azure/setup-helm@v1
