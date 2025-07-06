@@ -34,7 +34,7 @@ docker:
 	docker build -t awakari/embed-text .
 
 docker-arm:
-	docker build -t awakari/embed-text . -f arm.Dockerfile
+	docker build -t awakari/embed-text-arm64 . -f arm.Dockerfile
 
 run: docker
 	docker run \
