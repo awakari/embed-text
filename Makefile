@@ -33,8 +33,8 @@ build-arm64: proto
 docker:
 	docker build -t awakari/embed-text .
 
-docker-arm64:
-	docker build -t awakari/embed-text . -f arm64.Dockerfile
+docker-arm:
+	docker build -t awakari/embed-text . -f arm.Dockerfile
 
 run: docker
 	docker run \
@@ -46,6 +46,9 @@ run: docker
 
 staging: docker
 	./scripts/staging.sh
+
+staging-arm: docker
+	./scripts/staging-arm.sh
 
 release: docker
 	./scripts/release.sh
