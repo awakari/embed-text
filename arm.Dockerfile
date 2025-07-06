@@ -20,7 +20,7 @@ RUN \
     apt-get install -y \
       protobuf-compiler \
       libprotobuf-dev && \
-    make build-arm
+    make build-arm64
 
 FROM --platform=linux/arm64 debian:bookworm-slim
 COPY --from=builder /go/src/embed-text/embed-text /bin/embed-text
