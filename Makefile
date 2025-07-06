@@ -26,8 +26,15 @@ build: proto
 	CGO_ENABLED=1 GOOS=linux GOARCH= GOARM= go build -ldflags="-s -w" -o ${BINARY_FILE_NAME} main.go
 	chmod ugo+x ${BINARY_FILE_NAME}
 
+build-arm64: proto
+	CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o ${BINARY_FILE_NAME} main.go
+	chmod ugo+x ${BINARY_FILE_NAME}
+
 docker:
 	docker build -t awakari/embed-text .
+
+docker-arm64:
+	docker build -t awakari/embed-text . -f arm64.Dockerfile
 
 run: docker
 	docker run \

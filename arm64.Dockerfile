@@ -1,0 +1,26 @@
+FROM --platform=linux/arm64 golang:1.24.4-bullseye AS builder
+ARG MODEL_TYPE=intfloat
+ARG MODEL_NAME=multilingual-e5-small
+ARG MODEL_FILE_ONNX=model_O4.onnx
+ARG TOKENIZER_FILE=tokenizer.json
+ARG ONNX_RUNTIME_VERSION=1.22.0
+WORKDIR /go/src/embed-text
+COPY . .
+RUN \
+    curl -L https://huggingface.co/${MODEL_TYPE}/${MODEL_NAME}/resolve/main/onnx/${MODEL_FILE_ONNX}?download=true -o /model.onnx && \
+    curl -L https://huggingface.co/${MODEL_TYPE}/${MODEL_NAME}/resolve/main/${TOKENIZER_FILE}?download=true -o /tokenizer.json && \
+    curl -LO https://github.com/microsoft/onnxruntime/releases/download/${ONNX_RUNTIME_VERSION}/onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}.tgz && \
+    tar -xzf onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}.tgz && \
+    cp -f onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.${ONNX_RUNTIME_VERSION} /usr/lib64/onnxruntime.so && \
+    dnf install -y \
+      protobuf-compiler \
+      protobuf-devel && \
+    make build-arm64
+
+FROM --platform=linux/arm64 debian:bookworm-slim
+COPY --from=builder /go/src/embed-text/embed-text /bin/embed-text
+COPY --from=builder /model.onnx /model/model.onnx
+COPY --from=builder /tokenizer.json /model/tokenizer.json
+COPY --from=builder /usr/lib64/onnxruntime.so /usr/lib/onnxruntime.so
+
+ENTRYPOINT ["/bin/embed-text"]
