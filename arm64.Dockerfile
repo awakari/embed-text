@@ -9,9 +9,9 @@ COPY . .
 RUN \
     curl -L https://huggingface.co/${MODEL_TYPE}/${MODEL_NAME}/resolve/main/onnx/${MODEL_FILE_ONNX}?download=true -o /model.onnx && \
     curl -L https://huggingface.co/${MODEL_TYPE}/${MODEL_NAME}/resolve/main/${TOKENIZER_FILE}?download=true -o /tokenizer.json && \
-    curl -LO https://github.com/microsoft/onnxruntime/releases/download/${ONNX_RUNTIME_VERSION}/onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}.tgz && \
-    tar -xzf onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}.tgz && \
-    cp -f onnxruntime-linux-aarch64-1.22.0/lib/libonnxruntime.so.${ONNX_RUNTIME_VERSION} /usr/lib64/onnxruntime.so && \
+    curl -L https://github.com/microsoft/onnxruntime/releases/download/${ONNX_RUNTIME_VERSION}/onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}.tgz -o /onnxruntime.tgz && \
+    tar -xzf /onnxruntime.tgz && \
+    cp -f /onnxruntime/lib/libonnxruntime.so.${ONNX_RUNTIME_VERSION} /usr/lib64/onnxruntime.so && \
     apt-get install -y protobuf-compiler libprotobuf-dev && \
     make build-arm64
 
