@@ -12,7 +12,13 @@ RUN \
     curl -L https://github.com/microsoft/onnxruntime/releases/download/v${ONNX_RUNTIME_VERSION}/onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}.tgz -o /onnxruntime.tgz && \
     tar -xzf /onnxruntime.tgz && \
     cp -f onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}/lib/libonnxruntime.so.${ONNX_RUNTIME_VERSION} /usr/lib/onnxruntime.so && \
-    apt-get install -y protobuf-compiler libprotobuf-dev && \
+    apt-get update && \
+    apt-get install -y \
+      gnupg \
+      software-properties-common && \
+    apt-get install -y \
+      protobuf-compiler \
+      libprotobuf-dev && \
     make build-arm64
 
 FROM --platform=linux/arm64 debian:bookworm-slim
