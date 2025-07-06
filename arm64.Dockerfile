@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 golang:1.24.4-bullseye AS builder
+FROM --platform=linux/arm64 golang:1.24.4-bookworm AS builder
 ARG MODEL_TYPE=intfloat
 ARG MODEL_NAME=multilingual-e5-small
 ARG MODEL_FILE_ONNX=model_O4.onnx
@@ -13,9 +13,6 @@ RUN \
     tar -xzf /onnxruntime.tgz && \
     cp -f onnxruntime-linux-aarch64-${ONNX_RUNTIME_VERSION}/lib/libonnxruntime.so.${ONNX_RUNTIME_VERSION} /usr/lib/onnxruntime.so && \
     apt-get update && \
-    apt-get install -y \
-      gnupg \
-      software-properties-common && \
     apt-get install -y \
       protobuf-compiler \
       libprotobuf-dev && \
