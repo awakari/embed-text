@@ -1,21 +1,24 @@
-#name: Staging
-#
-#on:
-#  push:
-#    branches:
-#      - "mistress"
-#
-#env:
-#  COMPONENT: embed-text
-#  VERSION: latest
-#  CHART_VERSION: 0.0.0
-#
-#jobs:
-#
-#  deploy:
-#    runs-on: ubuntu-latest
-#    steps:
-#
+name: Staging
+
+on:
+  push:
+    branches:
+      - "mistress"
+
+env:
+  COMPONENT: embed-text
+  VERSION: latest
+  CHART_VERSION: 0.0.0
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: No-op step
+        run: echo "No operation"
+
 #      - uses: actions/checkout@v2
 #
 #      - name: Registry login
