@@ -1,4 +1,2 @@
 image:
   repository: ghcr.io/awakari/embed-text-arm64
-service:
-  type: LoadBalancer
